@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const LoginFormComp = () => {
+const LoginPage = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -64,7 +64,7 @@ const LoginFormComp = () => {
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/auth/register" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
@@ -75,4 +75,4 @@ const LoginFormComp = () => {
     );
 }
 
-export default LoginFormComp;
+export default LoginPage;
