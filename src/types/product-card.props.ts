@@ -1,10 +1,9 @@
 import {UUIDDto} from "./uuid-dto.type";
 
-export interface ProductDto extends UUIDDto {
+export interface ProductCardProps extends UUIDDto {
     id: string;
     title: string;
     image_url: string;
-    description: string;
     price: number;
     available_amount: number;
 }

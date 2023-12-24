@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// ========================== redux =============================
 import { createSlice } from "@reduxjs/toolkit";
 
-// ========================== actions ===========================
-import { fetchSignIn, fetchSignUp } from "./auth.actions";
+import { fetchLogin, fetchRegister } from "./auth.actions";
 
-type IInitialState = {
+type InitialStateDto = {
   token: string;
   errors: {
     token: string | null;
@@ -23,7 +20,7 @@ const initialState = {
   pending: {
     token: false,
   },
-} as IInitialState;
+} as InitialStateDto;
 
 const authSlice = createSlice({
   name: "auth",
@@ -38,15 +35,15 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSignIn.pending, (state) => {
+      .addCase(fetchLogin.pending, (state) => {
         state.pending.token = false;
       })
-      .addCase(fetchSignIn.fulfilled, (state, action) => {
+      .addCase(fetchLogin.fulfilled, (state, action) => {
         state.pending.token = true;
         state.token = action.payload;
       })
       .addCase(
-        fetchSignIn.rejected,
+        fetchLogin.rejected,
         (state, action: any & { payload: any }) => {
           state.pending.token = false;
           state.token = "";
@@ -55,15 +52,15 @@ const authSlice = createSlice({
       );
 
     builder
-      .addCase(fetchSignUp.pending, (state) => {
+      .addCase(fetchRegister.pending, (state) => {
         state.pending.token = false;
       })
-      .addCase(fetchSignUp.fulfilled, (state, action) => {
+      .addCase(fetchRegister.fulfilled, (state, action) => {
         state.pending.token = true;
         state.token = action.payload;
       })
       .addCase(
-        fetchSignUp.rejected,
+        fetchRegister.rejected,
         (state, action: any & { payload: any }) => {
           state.pending.token = false;
           state.token = "";
@@ -76,4 +73,4 @@ const authSlice = createSlice({
 const { actions, reducer } = authSlice;
 export default reducer;
 export const { logout, clearErrors } = authSlice.actions;
-export { fetchSignIn };
+export { fetchLogin };

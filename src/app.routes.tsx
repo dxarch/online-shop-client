@@ -1,5 +1,16 @@
 import React, { FC, Suspense } from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
+import {decodeToken} from "react-jwt";
+
+const isAccessAllowed = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        const user = decodeToken(token);
+        if (user) return true
+    }
+
+    return false;
+}
 
 // ======= private route ======= //
 const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
@@ -8,7 +19,7 @@ const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
       <div><Element /></div>
     </Suspense>
   ) : (
-    <Navigate to={""} />
+    <Navigate to={"/"} />
   );
 };
 
@@ -20,16 +31,21 @@ const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
 );
 
 // ======= pages ======= //
-const UsersPage = React.lazy(() => import("app/users"));
+// const UsersPage = React.lazy(() => import("app/users"));
+// const HomePage = React.lazy(() => import("app/home"));
+const ProductsPage = React.lazy(() => import("./app/products"));
+const AuthPage = React.lazy(() => import("./app/auth"));
+
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* PRIVATE */}
-      <Route path={"/users/*"} element={<PrivateRoute element={UsersPage} />} />
-
-      {/* DEFAULT */}
-      <Route path='*' element={<Navigate to="/users" />} />
+        {/*PUBLIC*/}
+        <Route path={"products/*"} element={<PublicRoute element={ProductsPage} />}/>
+        <Route path={"auth/*"} element={<PublicRoute element={AuthPage} />}/>
+        {/*/!* PRIVATE *!/*/}
+      {/*/!* DEFAULT *!/*/}
+        <Route path={"*"} element={<Navigate to="/products" />}/>
     </Routes>
   );
 };

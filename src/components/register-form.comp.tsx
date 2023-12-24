@@ -7,17 +7,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import {RegisterInterface} from "../app/auth/types/register.interface";
+import {FC} from "react";
+import {RegisterFormProps} from "../types/register-form.props";
 
-const RegisterPage = () => {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
-
+const RegisterFormComp: FC<RegisterFormProps> = ({}) => {
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -32,7 +26,7 @@ const RegisterPage = () => {
                 <Typography component="h1" variant="h5">
                     Register
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <Box component="form" noValidate sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -99,4 +93,4 @@ const RegisterPage = () => {
     );
 }
 
-export default RegisterPage;
+export default RegisterFormComp;

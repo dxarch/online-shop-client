@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const LoginPage = () => {
+const LoginFormComp = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -75,4 +75,4 @@ const LoginPage = () => {
     );
 }
 
-export default LoginPage;
+export default LoginFormComp;
