@@ -1,102 +1,41 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-
-const RegisterFormComp = () => {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
-
+// import * as React from 'react';
+import {FC} from "react";
+// import {useDispatch, useSelector} from "react-redux";
+// import AppDispatch from "../../store";
+// import {useNavigate} from "react-router-dom";
+// import {AuthErrorSelector, AuthPendingSelector} from "./store/auth.selector";
+// import {RegisterInterface} from "./types/register.interface";
+// import {clearErrors, fetchRegister} from "./store/auth.slice";
+import RegisterFormComp from "../../components/register-form.comp";
+//
+// export const checkTokenStatus = (
+//     requestStatus: string,
+//     tokenPayload: string,
+//     navigate: (path: string) => void
+// ) => {
+//     if (requestStatus !== 'rejected') {
+//         localStorage.setItem("token", tokenPayload);
+//         navigate("/products");
+//     } else return;
+// }
+//
+const RegisterPage: FC = () => {
+//     const dispatch = useDispatch<AppDispatch>();
+//
+//     const navigate = useNavigate();
+//     const fetchingErrors = useSelector(AuthErrorSelector);
+//     const fetchingPending = useSelector(AuthPendingSelector);
+//
+//     const handleRegister = async (data: RegisterInterface) => {
+//         dispatch(clearErrors());
+//
+//         const newToken = await dispatch(fetchRegister(data));
+//         checkTokenStatus(newToken.meta.requestStatus, newToken.payload, navigate);
+//     }
+//
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <Typography component="h1" variant="h5">
-                    Register
-                </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="given-name"
-                                name="firstName"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                autoComplete="family-name"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="new-password"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        Sign Up
-                    </Button>
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Box>
-        </Container>
+        <RegisterFormComp />
     );
 }
-
-export default RegisterFormComp;
+//
+export default RegisterPage;
